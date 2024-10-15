@@ -3,7 +3,27 @@ guid: 53f4fabffa84e2e4fa304961cf494caa
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_body
+    second: {fileID: 2100000, guid: f99339b6573a9db4898df2e26f690427, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_eye
+    second: {fileID: 2100000, guid: 60673482d0c0b0043a7906eaa6c92e24, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_mouth
+    second: {fileID: 2100000, guid: 75de0620bed4dd34897fb28053708953, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MI_pants
+    second: {fileID: 2100000, guid: e4435969ce3058c4588fb028b82f78e7, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
