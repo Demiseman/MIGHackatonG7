@@ -5488,6 +5488,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shadow
       objectReference: {fileID: 0}
+    - target: {fileID: 72573251133471866, guid: 12d2366cc0232d54da68e79ad8ae4386, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 741409831854876352, guid: 12d2366cc0232d54da68e79ad8ae4386, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.7
@@ -5506,7 +5510,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 741409831854876352, guid: 12d2366cc0232d54da68e79ad8ae4386, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.79
+      value: 3.33
       objectReference: {fileID: 0}
     - target: {fileID: 741409831854876352, guid: 12d2366cc0232d54da68e79ad8ae4386, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6238,7 +6242,7 @@ GameObject:
   - component: {fileID: 1284769512}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7857,6 +7861,10 @@ PrefabInstance:
     - target: {fileID: 4195633094285011850, guid: 4cc1f110c6b912f4ba3ed1e4b5e44681, type: 3}
       propertyPath: m_Name
       value: "Mu\xC3\xB1ecoMeshCompleto@Walking"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4195633094285011850, guid: 4cc1f110c6b912f4ba3ed1e4b5e44681, type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20570,8 +20578,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 23.137642, y: 3.6443846, z: 24.24452}
-  m_Center: {x: -26.946863, y: 1.3221927, z: 1.0878052}
+  m_Size: {x: 23.137642, y: 3.6570256, z: 24.24452}
+  m_Center: {x: -26.946863, y: 1.3285133, z: 1.0878052}
 --- !u!4 &3110123148249046419
 Transform:
   m_ObjectHideFlags: 0
