@@ -12,7 +12,7 @@ using TMPro;
 public class PlayerInputHandler : MonoBehaviour
 {
     // Velocidad de movimiento del jugador
-    public float speed = 5f;
+    public float speed = 7f;
     
     // Almacena la dirección del movimiento que será proporcionada por el input
     private Vector2 movementInput;

@@ -40045,12 +40045,79 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2532856582451140359}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6304846389559816897}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7815710092030888509}
+    - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3083823643840660915}
+    - targetCorrespondingSourceObject: {fileID: 1082271958561512970, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3831567834849891773}
   m_SourcePrefab: {fileID: 100100000, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
 --- !u!4 &3741472730417612468 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 366175167995203695, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
   m_PrefabInstance: {fileID: 3961069529101375195}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &4178649259691395281 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1082271958561512970, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
+  m_PrefabInstance: {fileID: 3961069529101375195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &3083823643840660915
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178649259691395281}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.33799443
+  m_Height: 1.1418628
+  m_Direction: 1
+  m_Center: {x: -6.1679495e-10, y: 0.31822637, z: -0.018093798}
+--- !u!54 &3831567834849891773
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4178649259691395281}
+  serializedVersion: 4
+  m_Mass: 7
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4195633094285011850 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
@@ -40295,6 +40362,43 @@ MonoBehaviour:
   DebugDrawChainBounds: 0
   DebugDrawBoneNames: 0
   DebugDrawLengthFromRoot: 0
+--- !u!95 &6304846389559816897
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195633094285011850}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bdb0508861084fe4a9d045b8ab1c03ec, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7815710092030888509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4195633094285011850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e772a87967217474781e477a2a43963a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDistance: 2
+  maxDistance: 10
+  speed: 3
 --- !u!4 &5640740309195646813 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8700783698680967558, guid: 182e93f08bd56f84a8c6eb6d1a59cd4d, type: 3}
