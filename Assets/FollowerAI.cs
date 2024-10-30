@@ -1,92 +1,180 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class FollowerAI : MonoBehaviour
 {
-    // Distancia mínima a la que se acercará el asistente al jugador
     public float minDistance = 2f;
-
-    // Distancia máxima que define cuando el asistente comienza a seguir al jugador
     public float maxDistance = 10f;
-
-    // Velocidad de movimiento del asistente
+    public float intermediateDistance = 5f; // Nuevo radio intermedio
     public float speed = 3f;
+    public float chaseSpeed = 8f;
 
-    // Referencia al transform del jugador
     private Transform playerTransform;
-
-    // Referencia al Animator para controlar las animaciones
+    private Transform targetGoodTag;
     private Animator animator;
-
-    // Estado de seguimiento
+    private Rigidbody rb;
     private bool isFollowing = false;
+    private bool isChasing = false;
+    private bool isGoingToGoodTag = false;
+    public MentalStateManager mentalStateManager;
 
     private void Start()
     {
-        // Buscar al jugador en la escena por su etiqueta "Player"
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
-        // Si se encuentra un jugador, obtener su transform
-        if (player != null)
-        {
-            playerTransform = player.transform;
-        }
-
-        // Obtener el componente Animator del asistente
+        UpdateClosestPlayer();
         animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
-        // Verificar que el jugador exista antes de realizar acciones
-        if (playerTransform == null) return;
+        UpdateClosestPlayer();
 
-        // Calcular la distancia actual al jugador
-        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-
-        // Si la distancia es mayor a maxDistance, el asistente comienza a seguir al jugador
-        if (distanceToPlayer > maxDistance)
+        if (isChasing)
         {
-            isFollowing = true;
-            FollowPlayer();
+            ChasePlayer();
         }
-        // Si el jugador está dentro del rango, el asistente se detiene
+        else if (isGoingToGoodTag && targetGoodTag != null)
+        {
+            MoveToGoodTag();
+        }
         else
         {
-            isFollowing = false;
-        }
+            if (playerTransform == null) return;
 
-        // Actualizar el parámetro "isFollow" del Animator para controlar la animación
-        animator.SetBool("isFollow", isFollowing);
+            float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+            // Verificar si hay objetos GoodTag en el radio intermedio
+            Collider[] colliders = Physics.OverlapSphere(transform.position, intermediateDistance);
+            foreach (Collider col in colliders)
+            {
+                if (col.CompareTag("GoodTag"))
+                {
+                    targetGoodTag = col.transform;
+                    isGoingToGoodTag = true;
+                    isFollowing = false;
+                    animator.SetBool("isFollow", false);
+                    return;
+                }
+            }
+
+            // Continuar con la lógica habitual si no se detectan objetos GoodTag
+            if (distanceToPlayer > maxDistance)
+            {
+                isFollowing = true;
+                FollowPlayer();
+            }
+            else
+            {
+                isFollowing = false;
+            }
+
+            animator.SetBool("isFollow", isFollowing);
+        }
     }
 
     private void FollowPlayer()
     {
-        // Calcular la dirección hacia el jugador
         Vector3 direction = (playerTransform.position - transform.position).normalized;
 
-        // Mover al asistente solo si la distancia es mayor a minDistance
         if (Vector3.Distance(transform.position, playerTransform.position) > minDistance)
         {
-            // Mover al asistente en la dirección del jugador
-            transform.Translate(direction * speed * Time.deltaTime, Space.World);
+            rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
 
-            // Rotar al asistente para que mire hacia el jugador
             Quaternion targetRotation = Quaternion.LookRotation(direction);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
         }
     }
 
-    // Dibujar los gizmos para visualizar las distancias mínima y máxima
+    private void ChasePlayer()
+    {
+        Vector3 direction = (playerTransform.position - transform.position).normalized;
+        rb.MovePosition(transform.position + direction * chaseSpeed * Time.deltaTime);
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+
+        float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+
+        if (distanceToPlayer <= minDistance)
+        {
+            isChasing = false;
+            animator.SetBool("isFollow", false);
+        }
+    }
+
+    private void MoveToGoodTag()
+    {
+        if (targetGoodTag == null) return;
+
+        Vector3 direction = (targetGoodTag.position - transform.position).normalized;
+        rb.MovePosition(transform.position + direction * speed * Time.deltaTime);
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+
+        float distanceToGoodTag = Vector3.Distance(transform.position, targetGoodTag.position);
+
+        animator.SetBool("isFollow", true);
+
+        // Si el NPC toca el objeto GoodTag, el objeto desaparece y el NPC regresa a su conducta habitual
+        if (distanceToGoodTag <= minDistance)
+        {
+            Destroy(targetGoodTag.gameObject);
+            targetGoodTag = null;
+            isGoingToGoodTag = false;
+            animator.SetBool("isFollow", false);
+
+        }
+    }
+
+    public void CallNPCToChase()
+    {
+        isChasing = true;
+        animator.SetBool("isFollow", true);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("GoodTag"))
+        {
+            mentalStateManager.Goodtime();
+            StartCoroutine(mentalStateManager.DestroyAfterDelay(other.gameObject, 0.2f));
+        }
+        else if (other.CompareTag("BadTag"))
+        {
+            mentalStateManager.Badtime();
+            StartCoroutine(mentalStateManager.DestroyAfterDelay(other.gameObject, 0.2f));
+        }
+    }
+
+    private void UpdateClosestPlayer()
+    {
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        float closestDistance = Mathf.Infinity;
+        Transform closestPlayer = null;
+
+        foreach (GameObject player in players)
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+            if (distanceToPlayer < closestDistance)
+            {
+                closestDistance = distanceToPlayer;
+                closestPlayer = player.transform;
+            }
+        }
+
+        playerTransform = closestPlayer;
+    }
+
     private void OnDrawGizmos()
     {
-        // Dibujar la distancia mínima en verde
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, minDistance);
 
-        // Dibujar la distancia máxima en rojo
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, maxDistance);
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, intermediateDistance); // Dibujar el radio intermedio
     }
 }

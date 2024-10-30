@@ -8,28 +8,15 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: defaultMat
-  m_Shader: {fileID: 4800000, guid: d0d1fd1e0a8a302438a8dfaa0601857a, type: 3}
+  m_Shader: {fileID: 4800000, guid: 6eb86e4931b506a408fd1477edec61ea, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
-  - DISTORTUSECOL_ON
-  - HSV_ON
-  - SHAPE1DISTORT_ON
-  - SHAPE1SCREENUV_ON
-  - SHAPE2DISTORT_ON
-  - SHAPE2SCREENUV_ON
-  - SHAPE2_ON
-  - SHAPE3CONTRAST_ON
-  - SHAPE3DISTORT_ON
-  - SHAPE3SCREENUV_ON
-  - SHAPE3_ON
-  - SHAPEADD_ON
-  m_InvalidKeywords:
-  - BLURISHD_ON
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
   - MOTIONVECTORS
@@ -171,6 +158,7 @@ Material:
     - _AlphaToMask: 0
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
+    - _BlendOp: 0
     - _Brightness: 0
     - _BumpScale: 1
     - _CamDistFadeStepMax: 100

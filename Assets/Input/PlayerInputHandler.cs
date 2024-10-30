@@ -17,6 +17,8 @@ public class PlayerInputHandler : MonoBehaviour
     // Almacena la dirección del movimiento que será proporcionada por el input
     private Vector2 movementInput;
 
+    FollowerAI followerAI;
+
     // Referencia a la cámara principal
     private Camera mainCamera;
 
@@ -25,6 +27,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         // Obtener la cámara principal automáticamente
         mainCamera = Camera.main;
+        followerAI = GameObject.FindGameObjectWithTag("NPC").GetComponent<FollowerAI>();
     }
 
     // Este método se ejecuta una vez por frame
@@ -69,4 +72,14 @@ public class PlayerInputHandler : MonoBehaviour
         // Lee los valores del input como un Vector2 (ej. de un joystick o teclas WASD)
         movementInput = ctx.ReadValue<Vector2>();
     }
+    
+
+    public void OnCall(InputAction.CallbackContext ctx)
+{
+    if (ctx.performed)
+    {
+        Debug.Log("Call input detected"); // Esto ayudará a verificar si el evento se dispara correctamente.
+        followerAI.CallNPCToChase();
+    }
+}
 }

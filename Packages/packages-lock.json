@@ -1,5 +1,15 @@
 {
   "dependencies": {
+    "com.projectdawn.splitscreen": {
+      "version": "file:com.projectdawn.splitscreen",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {
+        "com.unity.mathematics": "1.2.5",
+        "com.unity.collections": "0.9.0-preview.6",
+        "com.unity.burst": "1.3.0-preview.12"
+      }
+    },
     "com.unity.bindings.openimageio": {
       "version": "1.0.0",
       "depth": 1,
@@ -11,7 +21,7 @@
     },
     "com.unity.burst": {
       "version": "1.8.18",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
